@@ -1,0 +1,37 @@
+{
+  "Session": {
+    "ID": "cube60",
+    "Photons": 1000000,
+    "RNGSeed": 1648335518,
+    "DoMismatch": 0,
+    "DoNormalize": 1,
+    "OutputType": "X"
+  },
+  "_//": "Forward definition defines 10 gates",
+  "Forward": { "T0": 0, "T1": 5e-09, "Dt": 5e-10 },
+  "Optode": {
+    "Source": {
+      "Type": "pencil",
+      "Pos": [29, 29, 0],
+      "Dir": [0, 0, 1],
+      "Param1": [0, 0, 0, 0],
+      "Param2": [0, 0, 0, 0]
+    },
+    "Detector": [
+      { "Pos": [29, 19, 0], "R": 1 },
+      { "Pos": [29, 39, 0], "R": 1 },
+      { "Pos": [19, 29, 0], "R": 1 },
+      { "Pos": [39, 29, 0], "R": 1 }
+    ]
+  },
+  "Domain": {
+    "OriginType": 1,
+    "LengthUnit": 1,
+    "Dim": [60, 60, 60],
+    "Media": [
+      { "mua": 0,     "mus": 0, "g": 1,    "n": 1 },
+      { "mua": 0.005, "mus": 1, "g": 0.01, "n": 1.37 }
+    ]
+  },
+  "Shapes": [ { "Grid": { "Tag": 1, "Size": [60, 60, 60] } } ]
+}
