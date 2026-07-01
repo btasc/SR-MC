@@ -37,14 +37,18 @@ impl<T: Copy + Default, const N: usize> Volume<T, N> {
 }
 
 pub struct Material {
-    // unimplemented for now, I plan to add fields as I write the relevant kernels
+    pub mu_a: f32,
+    pub mu_s: f32,
+    pub mu_t: f32,
 }
 
 pub struct PhotonStateF32 {
-    local_pos: Vec3,
-    global_pos: [usize; 3],
-    weight: f32,
-    path: f32,
-    time: f32,
-    voxel_acc: f32,
+    pub local_pos: Vec3,
+    pub global_pos: [usize; 3],
+    pub weight: f32,
+    pub path: f32,
+    pub is_path_done: bool,
+    pub time: f32,
+    pub voxel_acc: f32,
+    pub current_voxel_idx: usize,
 }
