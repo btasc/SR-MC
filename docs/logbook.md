@@ -1,6 +1,11 @@
 # Logbook
 
-## 06-24-26, Beginning Research and Design
+## 07-02-26, Started notes and CPU implementation
+This week, I've started work on the CPU implementation. I plan to go through and write a rough floating point version, then go back complete the bit width study. Along with that, I decided to reread the main sources and take notes to make sure I fully understand what is happening. I plan to do this along with implementation as to be able to apply what I'm learning as I use it. Currently, I've only finished the photon step size, however I plan to go through and review all the core processes in a similar way until I can piece together the entire algorithm in f32.
+
+Next, I have three main goals I want to work on. First, as mentioned, I want to finish the f32 reference. Second, I want to research each piece as I implement it as well, making sure I fully understand how all the parts are derived. Finally, I want to finish the [design.md](./design.md) doc, as currently it's still a rough draft with unfinished parts, specifically the specifications of the memory cache system in URAM on the FPGA while also being messy.
+
+## 06-24-26, Beginning research and design
 In the past week, I've worked on the first parts of design and research. So far I've reviewed the foundational papers on both MCX and Stochastic rounding. Currently, I'm still working on following the leads from the MCX paper to learn more about the field and its foundations, along with its core processes.
 
 Along with research, I've begun working on the hardware layout of an HLS implementation, where I've spent the majority of my time this week. I managed to connect the structure using streams that pass data around, different from a software lens of passing variables into functions and using returns values. Design is document in [design.md](./design.md).

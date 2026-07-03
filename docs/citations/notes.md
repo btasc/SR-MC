@@ -40,14 +40,10 @@ MCML defines the function to convert a probability function into a usable sampli
 
 #### Photon step size
 
-To create the photon step size sampling function, you must find the probability function of a photon step, where when you input a length, and it outputs the probability density of that value.
+To create the photon step size sampling function, you must find the probability function of a photon step, where when you input a length, and it outputs the probability density of that value. To create the probability function, you must define some function, $ F $, that when given an input $ s $, it outputs the probability of it making to that length. When that function is plugged into the random sampling function, it returns $ - \ln(\varepsilon) / \mu_t $.
 
 #### Refractive boundary crossing
 
-
-
-
-
-
+Due to the difficult math and the ray "duplication", I decided not to implement refraction on the crossing of voxel boundaries.
 
 ### Other Citations
