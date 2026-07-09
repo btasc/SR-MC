@@ -48,6 +48,8 @@ pub struct Material {
     pub mu_s: f32,
     pub mu_t: f32,
     
+    pub n: f32,
+    
     // add henyey greenstein values
     pub g: f32,
     pub g_2: f32,
@@ -63,6 +65,7 @@ pub struct PhotonStateF32 {
     pub weight: f32,
     pub path: f32,
     pub is_path_done: bool,
+    pub is_terminated: bool,
     pub time: f32,
     pub voxel_acc: f32,
     pub current_voxel_idx: usize,
