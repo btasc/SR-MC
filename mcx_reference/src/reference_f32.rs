@@ -36,10 +36,6 @@ pub fn resolve_photon(photon: PhotonStateF32, volume_in: &Volume<u8, 3>, fluence
 // helpers
 
 fn voxel_t_exit(dir: Vec3, pos: Vec3) -> (usize, f32) /* (axis, t) */ {
-    // not needed in final implementation
-    // fixes the issue of just using .trunc on pos, as if pos should be 1.0, trunc would make it 0.0
-    let ;
-
     let inv_dir = dir.recip();
 
     let tlo = (Vec3::ZERO - pos) * inv_dir;
