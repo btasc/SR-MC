@@ -1,5 +1,12 @@
 # Logbook
 
+## 07-09-26, Compiled more sources, continued notes, and worked on CPU implementation
+This week I've worked on my list of goals from last week. Additionally, I worked on finding more citations for the different sections of my project, as I had only formally compiled a few sources. With those sources, I sorted each into categories of either FPGA, Monte Carlo, SR, and Bit Sweep, and I plan to review each section as I'm working on it. This week, I got a lot of work done for the draft f32 implementation and consequently finished reviewing the Monte Carlo section of sources and took short notes on each, which I plan to emulate for the other parts of my project.
+
+In docs, I spent some time reviewing how AI is allowed to be used in SFS science fairs and found that AI is allowed to generate code as long as its labeled as such. Consequently, I made [prompts.md](./prompts.md) that outlines each prompt and corresponding output and AI model. My general goal with using AI is to use it on code that doesn't affect the core project and would otherwise waste time. For example, today I asked AI to write two Python functions, one for changing the format of a JSON file and the other for graphing from a .npy file.
+
+Finally, I decided to make a [workbook.md](./workbook.md) that is similar to the logbook, however is updated more often. Generally there are a lot of things that I do that take say an hour or so, or theories / optimizations that I think of that don't fit into a weekly log, and I want to document them in some place.
+
 ## 07-02-26, Started notes and CPU implementation
 This week, I've started work on the CPU implementation. I plan to go through and write a rough floating point version, then go back complete the bit width study. Along with that, I decided to reread the main sources and take notes to make sure I fully understand what is happening. I plan to do this along with implementation as to be able to apply what I'm learning as I use it. Currently, I've only finished the photon step size, however I plan to go through and review all the core processes in a similar way until I can piece together the entire algorithm in f32.
 
