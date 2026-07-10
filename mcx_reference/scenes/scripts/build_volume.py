@@ -16,6 +16,7 @@ for scene in scenes_to_build:
 
     for s in cfg["Shapes"]:
         for shape_type, shape_val in s.items():
+
             match shape_type:
                 case "Grid":
                     tag = shape_val["Tag"]
