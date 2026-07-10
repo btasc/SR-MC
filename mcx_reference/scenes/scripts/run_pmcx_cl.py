@@ -1,9 +1,9 @@
 import numpy as np
 import json, pmcxcl
-from utils import load_mcx_config
+from load_mcx_config import load_mcx_config
 
 scenes_to_run = [
-    "cube60"
+    "cube60g1"
 ]
 
 for scene in scenes_to_run:
