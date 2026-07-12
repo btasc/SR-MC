@@ -96,7 +96,7 @@ fn sample_path(photon: &mut PhotonStateF32) {
     // reroll if an invalid number is generated
     while eps == 1.0 || eps == 0.0 { eps = photon.rng.random::<f32>(); }
 
-    photon.path = eps.ln();
+    photon.path = - eps.ln();
     photon.is_path_done = false;
 }
 
@@ -110,10 +110,6 @@ fn get_out_gate(photon: &PhotonStateF32) -> [usize; 4]  {
 }
 
 fn traverse(photon: &mut PhotonStateF32, volume_in: &Volume<u8, 3>, fluence_out: &mut Volume<f32, 4>, materials: &[Material]) {
-    // in the edge case that sample_path draws a path with length 0, this could trip, although its extremely unlikely
-    debug_assert_ne!(photon.path, 0.0);
-    debug_assert_eq!(photon.is_path_done, false);
-
     let mat = &materials[photon.current_voxel_idx];
 
     let global_vec3 = (USizeVec3::from_array(photon.global_pos)).as_vec3();
@@ -126,12 +122,16 @@ fn traverse(photon: &mut PhotonStateF32, volume_in: &Volume<u8, 3>, fluence_out:
     let traveled = if did_cross_bound { t_exit } else { photon.path / mat.mu_s };
 
     photon.pos += photon.dir * traveled;
+
+    // snap the exit axis piece to the boundary to avoid any floating point rror
+    photon.pos[exit_axis] = if photon.dir[exit_axis] > 0.0 { 0.0 } else { 1.0 };
+
     photon.time += traveled * mat.n;
 
     // let kept = (-mat.mu_a * traveled).exp();
-    let kept = (-mat.mu_a * traveled).exp_m1() + 1.0;
-    photon.voxel_acc += photon.weight * (1.0 - kept);
-    photon.weight *= kept;
+    let kept = (-mat.mu_a * traveled).exp_m1();
+    photon.voxel_acc += photon.weight * (kept);
+    photon.weight *= kept + 1.0;
 
     if did_cross_bound {
         photon.path -= slen;
