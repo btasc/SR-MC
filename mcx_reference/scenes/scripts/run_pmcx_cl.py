@@ -15,4 +15,4 @@ for scene in scenes_to_run:
     res = pmcxcl.run(cfg)
 
     flux = res['flux']
-    np.save(f"../cache/flux_{scene}.npy", flux)
+    np.save(f"../cache/flux_{scene}_cl.npy", flux)
