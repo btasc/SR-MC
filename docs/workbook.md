@@ -1,5 +1,9 @@
 # Workbook
 
+## 07-11-26, Researching elementary function implementations
+
+Today I spent time searching for a good manual on implementing elementary functions and eventually found "Cody & Waite, Software Manual for the Elementary Functions" as something that was available to download. My hope is that this contains the formulas for most functions needed such as ln and exp to where I can implement them on hardware, along with potentially having other tips for writing math in low level code. Alongside that, I tried a 1 line change to the traverse function to snap the position to a boundary when it crosses a border, however I didn't have time to test it as the research took most of the time today.
+
 ## 07-10-26, -ln(ε) optimizations continued, debugging
 
 ### -ln
@@ -7,7 +11,7 @@ Looking back over, there are some more things that could be a bit better with th
 
 One thing that felt like it could be optimized is how the piece wise function is distributed. If each slope is just the derivative of ln at certain points (f'), and each derivative is distributed based on the change of derivative (f''), there is probably some way to optimize using this correlation, however this is probably just a mathematical dead end.
 
-### debugging
+### Debugging
 
 Additionally, I worked on some debugging today in the f32 reference now that the scripts are working. First, I found that inv_dir can be equal to +-inf in voxel_t_exit whenever a direction is 0 as NaN is passed into partial_cmp, causing a panic on unwrap. To fix that I just changed it to a manual for loop where I discard any dir equal to exactly 0.0. Second, just to ensure that in the case of getting a path length of 0.0 (when random generates 1.0), I rewrote the random code to just reroll until eps isn't equal to 0 or 1, avoiding any annoying rng semantics. Next, I added an outer loop label on the loop in resolve photon to allow it to properly break. Finally, I changed the `kept` fraction to be calculated using exp_m1 over exp, as when I was researching what .exp actually did I found that .exp_m1 is much better for small numbers.
 
