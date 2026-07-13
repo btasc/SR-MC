@@ -1,5 +1,5 @@
-mod reference_f32;
-mod config;
+mod f32_reference;
+mod mcx_parser;
 
 fn main() {
     println!("Hello, world!");

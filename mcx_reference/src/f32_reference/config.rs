@@ -47,9 +47,9 @@ pub struct Material {
     pub mu_a: f32,
     pub mu_s: f32,
     pub mu_t: f32,
-    
+
     pub n: f32,
-    
+
     // add henyey greenstein values
     pub g: f32,
     pub g_2: f32,

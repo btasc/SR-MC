@@ -1,7 +1,7 @@
 use std::process::exit;
 use rand::RngExt;
 use glam::{Vec3, USizeVec3};
-use crate::config::*;
+use crate::f32_reference::config::*;
 
 pub fn resolve_photon(photon: PhotonStateF32, volume_in: &Volume<u8, 3>, fluence_out: &mut Volume<f32, 4>, materials: &[Material]) {
     // confirm that the inner volumes are the same shape to avoid indexing errors
@@ -36,7 +36,7 @@ pub fn resolve_photon(photon: PhotonStateF32, volume_in: &Volume<u8, 3>, fluence
 
 // helpers
 
-fn voxel_t_exit(dir: Vec3, pos: Vec3) -> (f32, usize) /* (axis, t) */ {
+fn voxel_t_exit(dir: Vec3, pos: Vec3) -> (f32, usize) /* (t, axis) */ {
     let mut exit = (f32::INFINITY, 0);
 
     for i in 0..3 {
@@ -50,6 +50,10 @@ fn voxel_t_exit(dir: Vec3, pos: Vec3) -> (f32, usize) /* (axis, t) */ {
     }
 
     debug_assert_ne!(exit.0, f32::INFINITY);
+
+    // exactly 0.0 could occur in the case that a photon lands exactly on a boundary, then scatters enough to reverse direction
+    // could also potentially occur on a perfect corner,
+    debug_assert!(exit.0 >= 0.0);
 
     exit
 
@@ -72,7 +76,6 @@ const THRESH: f32 = 1e-4;
 const M: f32 = 10.0;
 
 fn roulette(photon: &mut PhotonStateF32) {
-    debug_assert!(M > 1.0);
 
     if photon.weight >= THRESH {
         return
@@ -123,14 +126,14 @@ fn traverse(photon: &mut PhotonStateF32, volume_in: &Volume<u8, 3>, fluence_out:
 
     photon.pos += photon.dir * traveled;
 
-    // snap the exit axis piece to the boundary to avoid any floating point rror
-    photon.pos[exit_axis] = if photon.dir[exit_axis] > 0.0 { 0.0 } else { 1.0 };
+    // photon.pos[exit_axis] = if photon.dir[exit_axis] > 0.0 { 0.0 } else { 1.0 };
 
+    // not divided by speed of light
     photon.time += traveled * mat.n;
 
     // let kept = (-mat.mu_a * traveled).exp();
     let kept = (-mat.mu_a * traveled).exp_m1();
-    photon.voxel_acc += photon.weight * (kept);
+    photon.voxel_acc -= photon.weight * (kept);
     photon.weight *= kept + 1.0;
 
     if did_cross_bound {
@@ -160,6 +163,10 @@ fn traverse(photon: &mut PhotonStateF32, volume_in: &Volume<u8, 3>, fluence_out:
         } else {
             photon.global_pos[exit_axis] -= 1;
         }
+
+        // snap the boundary position, issue outlined in workbook 07-10-26 - debugging
+        let exit_snap: usize = if photon.dir[exit_axis] > 0.0 { 0 } else { 1 };
+        photon.pos[exit_axis] = (photon.global_pos[exit_axis] + exit_snap) as f32;
 
         photon.current_voxel_idx = volume_in.get(photon.global_pos) as usize;
     } else {
