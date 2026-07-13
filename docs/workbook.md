@@ -1,5 +1,13 @@
 # Workbook
 
+## 07-12-26, Debugging and refactoring configs, research plan tomorrow
+
+Today I looked over the debugging changes I made a few days ago and fixed some obvious oversights. More importantly, I refactored all the config system that I had previously left alone due to the fact that I will need to begin verifying if my reference implementation is working compared to a baseline. I found that I didn't actually need to ask AI to generate the JSON file converter outlined in [prompts.md](./prompts.md), "Asked to build load_mcx_config in scripts/utils.py", and instead I just needed to use the `json2mcx` and `mcx2json` functions provided by pmcxcl.
+
+This ended up taking a large amount of time due to the fact that all the JSON keys are completely different then the Python `cfg` keys. For example, the `vol` key in Python corresponds to the "Shapes" JSON key, with basically none lining up. Additionally, there is no actual dimensions field, meaning I had to implement my own. Since the amount of work in the scenes directory has grown, and since I plan to store my collected data there, I moved it up to the root directory.
+
+Tomorrow, I plan to try to at least make a draft of my research plan. I'm still far away from collecting any data, but I want to get it done before I even run my reference. This should be fine as I only waited to write it until I fully understood the MCX algorithm, and now that I do after writing the reference, I should be ready to start.
+
 ## 07-11-26, Researching elementary function implementations
 
 Today I spent time searching for a good manual on implementing elementary functions and eventually found "Cody & Waite, Software Manual for the Elementary Functions" as something that was available to download. My hope is that this contains the formulas for most functions needed such as ln and exp to where I can implement them on hardware, along with potentially having other tips for writing math in low level code. Alongside that, I tried a 1 line change to the traverse function to snap the position to a boundary when it crosses a border, however I didn't have time to test it as the research took most of the time today.
