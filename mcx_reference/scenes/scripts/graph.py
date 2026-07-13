@@ -62,4 +62,4 @@ def graph_flux_3d(file_path):
     plt.tight_layout()
     plt.show()
 
-graph_flux_3d(scene_file_path)
+# graph_flux_3d(scene_file_path)
