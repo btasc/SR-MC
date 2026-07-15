@@ -1,5 +1,11 @@
 # Workbook
 
+## 07-14-26, LVSF forms and serde parsing
+
+Today and yesterday I did research on the requirements for the forms as I'm getting closer to experimentation. From what I found, if I want to do experimentation, I need to send my forms to the director of LVSF before doing anything that would generate data, so I plan to get that done tomorrow or the next few days.
+
+Additionally, now that the JSON files are standardized, I wrote the Rust `serde` parsing code for the JSON, meaning I can start test runs for the reference, however I would like to finish my research plan and forms first.
+
 ## 07-12-26, Debugging and refactoring configs, research plan tomorrow
 
 Today I looked over the debugging changes I made a few days ago and fixed some obvious oversights. More importantly, I refactored all the config system that I had previously left alone due to the fact that I will need to begin verifying if my reference implementation is working compared to a baseline. I found that I didn't actually need to ask AI to generate the JSON file converter outlined in [prompts.md](./prompts.md), "Asked to build load_mcx_config in scripts/utils.py", and instead I just needed to use the `json2mcx` and `mcx2json` functions provided by pmcxcl.
