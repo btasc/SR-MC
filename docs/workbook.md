@@ -1,5 +1,19 @@
 # Workbook
 
+## 07-15-26, LVSF forms, DSP optimizations, bit sweep reformatting
+
+Today I looked over forms and began filling them out. I was a bit more busy with some other programming things, meaning I had only an hour or so to work today.
+
+Additionally, I had some time to think about optimizations for the FPGA which I would like to get into writing. First, I was doing some research on DSPs, and found that DSPs have a similar form to a GPU `fma` function, meaning they multiply two numbers and add a third no matter what, with the two numbers being multiplied being 26 bits * 17 along with a free sign bit.
+
+(from this doc https://docs.amd.com/v/u/en-US/ug579-ultrascale-dsp, page 9/77 from memory. I need to get this in TODO citations)
+
+This works nicely with the -ln(eps) optimization of k ln(2) - ln(m). k ln(2) would be computed through shifts and adds, and ln(m) would be a piecewise function, meaning k ln(2) would be computed, the slope of -ln(m) would be computed, then a multiply-add would be used for the final result.
+
+My main curiosity with this is for a SWAR like method, or "SIMD within a register" (SWAR seems to be an outdated term for CPUs, but it fits the idea), where you pack in multiple numbers to a multiply or other operation at the same expense as one large operation. Specifically, the unbalanced bit widths lend nicely to this, with the 26 * 17 being able to go down to a 13 * 17 and a 13 * 17. The main downside with this is that the 17 bit number has to be the same, however there are still a lot of uses for this. For example, in the scatter Henyey-Greenstein function, during the new direction multiplies, there are many multiplies with repeated terms, such as `dir.x * dir.z` and `dir.y * dir.z`, or `dir.x * cos_theta` and `dir.y * cos_theta`.
+
+The biggest issue is that it would require the shared operand bits plus the 2 split bits to add to less than or equal to half of the output bits. In the case of the DSP, this has to be a combined 22 bits. If 17 bits was kept, this would leave only 5 bits for the two other terms each. This lends itself to 11 bits each, however is highly customizable. This is useful, as it means that a bunch of points at which I can trade each term for different bit sizes.
+
 ## 07-14-26, LVSF forms and serde parsing
 
 Today and yesterday I did research on the requirements for the forms as I'm getting closer to experimentation. From what I found, if I want to do experimentation, I need to send my forms to the director of LVSF before doing anything that would generate data, so I plan to get that done tomorrow or the next few days.

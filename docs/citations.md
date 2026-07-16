@@ -34,6 +34,7 @@ FullMonte CUDA
 
 "CPFloat", "StochascticRounding.jl"
 
+https://docs.amd.com/v/u/en-US/ug579-ultrascale-dsp
 
 # Notes
 

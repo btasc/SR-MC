@@ -205,9 +205,10 @@ fn scatter(photon: &mut PhotonStateF32, materials: &[Material]) {
             .normalize()
     } else {
         let denom = (1.0 - dir.z * dir.z).sqrt();
+        let inv_demon = 1.0 / denom;
 
-        let new_x = sin_theta * (dir.x * dir.z * azi_cos - dir.y * azi_sin) / denom + dir.x * cos_theta;
-        let new_y = sin_theta * (dir.y * dir.z * azi_cos + dir.x * azi_sin) / denom + dir.y * cos_theta;
+        let new_x = sin_theta * (dir.x * dir.z * azi_cos - dir.y * azi_sin) * inv_demon + dir.x * cos_theta;
+        let new_y = sin_theta * (dir.y * dir.z * azi_cos + dir.x * azi_sin) * inv_demon + dir.y * cos_theta;
         let new_z = -sin_theta * azi_cos * denom + dir.z * cos_theta;
 
         Vec3::new(new_x, new_y, new_z).normalize()
