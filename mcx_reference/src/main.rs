@@ -1,6 +1,6 @@
 mod f32_reference;
 mod mcx_parser;
-mod sweep;
+mod ap_types;
 
 fn main() {
     let config_path = std::path::PathBuf::from("../scenes/configs/cube60g1.json");
