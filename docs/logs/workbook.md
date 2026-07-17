@@ -1,5 +1,13 @@
 # Workbook
 
+## 07-16-26, Started research plan, found Github Issue #41, further DSP research
+
+Today I started on the research plan, compiling my specific sources and other references. I wasn't able to fully finish the research plan prototype, however I would like to take my time rather than rush through, as the research plan is very important to the project. 
+
+Additionally and very excitingly, I found [Github issue #41](https://github.com/fangq/mcx/issues/41) while doing some final research for the research plan which perfectly outlines the issue of rounding errors slowly building up, and the current industry fixes for it, which notably does not include stochastic rounding. This is exciting as it is a core piece that validates the issue of swamping, and was found decently casually as the first result of Googling "MCX rounding accumulation". Further notes are in [notes.md](../citations/notes.md).
+
+Finally, I looked over the research paper [DSP-Packing: Squeezing Low-precision Arithmetic into FPGA DSP Blocks](https://arxiv.org/abs/2203.11028) to learn more about DSP packing and found that I got some stuff wrong. For example, the DSP block actually features a pre adder on the 27 bit term along with a previous output term, meaning a single DSP cycle looks more like `(A + D) * B + C + prev` rather than just `A * B + C`. While I wasn't able to finish fully reviewing, a short skim let me note that their proposed format of "Overpacking" performed very well, and I'm interested in if it could be applicable to my application. Notes on paper are in [notes.md](../citations/notes.md).
+
 ## 07-15-26, LVSF forms, DSP optimizations, bit sweep reformatting
 
 Today I looked over forms and began filling them out. I was a bit more busy with some other programming things, meaning I had only an hour or so to work today.
@@ -22,7 +30,7 @@ Additionally, now that the JSON files are standardized, I wrote the Rust `serde`
 
 ## 07-12-26, Debugging and refactoring configs, research plan tomorrow
 
-Today I looked over the debugging changes I made a few days ago and fixed some obvious oversights. More importantly, I refactored all the config system that I had previously left alone due to the fact that I will need to begin verifying if my reference implementation is working compared to a baseline. I found that I didn't actually need to ask AI to generate the JSON file converter outlined in [prompts.md](./prompts.md), "Asked to build load_mcx_config in scripts/utils.py", and instead I just needed to use the `json2mcx` and `mcx2json` functions provided by pmcxcl.
+Today I looked over the debugging changes I made a few days ago and fixed some obvious oversights. More importantly, I refactored all the config system that I had previously left alone due to the fact that I will need to begin verifying if my reference implementation is working compared to a baseline. I found that I didn't actually need to ask AI to generate the JSON file converter outlined in [prompts.md](prompts.md), "Asked to build load_mcx_config in scripts/utils.py", and instead I just needed to use the `json2mcx` and `mcx2json` functions provided by pmcxcl.
 
 This ended up taking a large amount of time due to the fact that all the JSON keys are completely different then the Python `cfg` keys. For example, the `vol` key in Python corresponds to the "Shapes" JSON key, with basically none lining up. Additionally, there is no actual dimensions field, meaning I had to implement my own. Since the amount of work in the scenes directory has grown, and since I plan to store my collected data there, I moved it up to the root directory.
 
