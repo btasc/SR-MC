@@ -34,8 +34,6 @@ FullMonte CUDA
 
 "CPFloat", "StochascticRounding.jl"
 
-https://docs.amd.com/v/u/en-US/ug579-ultrascale-dsp
-
 # Notes
 
 ## Stochastic Rounding
@@ -44,35 +42,25 @@ https://docs.amd.com/v/u/en-US/ug579-ultrascale-dsp
 
 Foundational paper on stochastic rounding. Describes the algorithm of rounding a number randomly based on its distance from the two nearest rounding candidates linearly, so a number x has a frac(x) to be rounded up and a 1 - frac(x) chance to be rounded down, where frac() returns the value of x minus its lower bound.
 
-## Monte Carlo
+[Deep Learning with Limited Numerical Precision](https://www.researchgate.net/profile/Ankur-Agrawal-18/publication/272195143_Deep_Learning_with_Limited_Numerical_Precision/links/551952760cf273292e7148bc/Deep-Learning-with-Limited-Numerical-Precision.pdf)
 
-### Parallel Voxelized Implementation
+## Monte Carlo
 
 [Monte Carlo simulation of photon migration in 3D turbid media accelerated by graphics processing units](https://pdfs.semanticscholar.org/6810/718bfd22cb6f355a5c6d05c9e9c7f6d9d832.pdf)
 
 Foundational paper on voxelized Monte Carlo used in the MCX GPU algorithm. Describes the idea of dispatching many threads with their own RNG seeds, along with the implementation details.
 
-### Algorithm
-
 [Monte Carlo modeling of light transport in multi-layered tissues](https://coilab.caltech.edu/documents/26537/Wang-1995-Computer_Methods_and_Programs_in_Bio.pdf)
 
 Describes the foundational math behind MCML, the predecessor to MCX, detailing each equation and its derivation. The following two sections are two important sections from the paper.
-
-#### Interaction coefficient
 
 The interaction coefficient $ μ $ is the variable that describes the chance of a photon interacting with either an absorption, $ μ_a $, or a scatter, $ μ_s $. Along with that there is g, anisotropy, the cosine of the average angle that can be used to calculate a random scatter amount. Both $ μ_a $ and $ μ_s $ are just the chance of scattering over some dx infinitely small length. Additionally, $ μ_t = μ_a + μ_s $ is the probability of just any interaction happening, used to calculate path length.
 
 In use, $ μ * L $ where $ L $ is a distance represents the amount of times a photon, on average, has some interaction. When $ μ * dx $, where dx is an infinitely small 1d distance, $ μ * dx $ represents the chance of interacting in the next infinitely small step.
 
-#### Random Function Sampling
-
 MCML defines the function to convert a probability function into a usable sampling function as $ \int_{a}^{x} p(x)dx \, = \varepsilon $, where you plug in p(x) as a function that takes in a value and returns the 'probability' (density) of that value. When plugged into the integral and solved for, you get back a function $ F(\varepsilon) $ that when a random value $ \varepsilon \in (0, 1) $ is input, it returns a correspondingly sampled output.
 
-#### Refractive boundary crossing
-
 Due to the difficult math and the ray "duplication", I decided not to implement refraction on the crossing of voxel boundaries.
-
-### Other
 
 ["Scalable and massively parallel Monte Carlo photon transport simulations for heterogeneous computing platforms"](https://pmc.ncbi.nlm.nih.gov/articles/PMC5785911/)
 
@@ -89,3 +77,20 @@ Describes the core steps that underlie any photon transport MC implementation re
 ["Exhaustive review of acceleration strategies for Monte Carlo simulations in photon transit"](https://www.researching.cn/ArticlePdf/m00092/2024/17/5/2430004.pdf)
 
 Surveys a huge amount of papers and projects on MC photon transport, detailing their hardware specifications and different techniques.
+
+[Github MCX, Issue #41](https://github.com/fangq/mcx/issues/41)
+
+Perfectly outlines the issue of 
+
+## Bit Sweep
+
+[DSP-Packing: Squeezing Low-precision Arithmetic into FPGA DSP Blocks](https://arxiv.org/abs/2203.11028)
+
+https://docs.amd.com/v/u/en-US/ug579-ultrascale-dsp
+
+Technical document of Xilinx DSP, specifically page 9/77 is used where it mentions supporting a "27 × 18 two’s complement multiplier" and "48-bit accumulator".
+
+[StochasticRounding.jl](https://github.com/milankl/StochasticRounding.jl)
+[CPFloat](https://github.com/north-numerical-computing/cpfloat)
+
+Two potential repos that were reviewed for their use in the bit sweep before deciding to go with a custom implementation.
