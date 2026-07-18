@@ -3,6 +3,8 @@ use std::{
     cmp::{Ordering}
 };
 
+use super::rounding::{Round, RoundMethod};
+
 #[derive(Debug, Clone, Copy)]
 pub struct ApInt {
     pub width: u32,
@@ -45,6 +47,15 @@ impl ApInt {
     fn core_width(&self) -> u32 {
         let us_core: u64 = self.core.unsigned_abs();
         u64::BITS - us_core.leading_zeros()
+    }
+}
+
+impl Round for ApInt {
+    const ROUND_METHOD: RoundMethod = RoundMethod::ToNearest;
+    type Width = u32;
+
+    fn get_fract_dist(&self, new_width: Self::Width) -> u32 {
+        0
     }
 }
 
