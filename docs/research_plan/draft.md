@@ -49,6 +49,7 @@ Board operates at low voltage with no chemicals or other hazards.
 
 # Data Analysis
 
-Bit sweep data is exported as a raw file, graphing a set of total functional accuracy over each variable's bit sweep and the total combined bit optimized version. For each HLS run, graph power draw, photons per sec, photons per sec per watt, and finally the total accuracy of the run. Compare mean and median of each.
+Bit sweep and HLS trial data will be exported into raw binary files which will be analyzed in Python through NumPy and matplotlib. For the bit sweep, the RMSE of the total function as each variable is swept will be recorded, with the final bit value being chosen as the lowest bit value that still maintains the per operation threshold, a fraction of the function's total RMSE budget. Once all bit widths are established, the combined accuracy of all will be recorded, 
+with a final RMSE value established. The HLS data will be analyzed on its power draw, photons calculated, time taken, and total RMSE of the output energy grid. Each set of values will be analyzed over their 10 runs, comparing their mean and median to find representative values, where the final results of each method can be compared.
 
 # Bibliography
