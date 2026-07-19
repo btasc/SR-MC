@@ -1,0 +1,55 @@
+# Title
+
+# Rationale
+
+In Monte Carlo simulations, specifically voxelized Monte Carlo photon transport, referred to as VMC from now on, a simulation generally consists of many tiny adds to the global accumulator grid. As a result, VMC grids require their per grid storage type to have a very large bit width capable of storing many precise values. This puts a large strain on memory use, along with requiring large intermediary datatypes, causing performance difficulties. Stochastic rounding is a technique to fix specifically this issue through trading bias with variance, and can be applied in both the VMC grid accumulator along with the intermediary datatypes, allowing both to be implemented in a lower width datatype. This helps both computational performance and memory strain. In order to facilitate both high performance stochastic rounding and arbitrary width numbers, an FPGA is the hardware of choice. It features extreme customizability, allowing for tailored RNG and fine control over math.
+
+# Research Question
+
+## Questions
+
+1. How far can stochastic rounding facilitate the lowering of bit widths until variance causes outputs to significantly decay?
+2. How does the lowering of bit widths effect the subsequent overall algorithmic performance?
+3. Does the change in performance allow for a low power FPGA device to viably compute VMC?
+
+## Synopsis of background
+
+[Deep Learning with Limited Numerical Precision](https://www.researchgate.net/profile/Ankur-Agrawal-18/publication/272195143_Deep_Learning_with_Limited_Numerical_Precision/links/551952760cf273292e7148bc/Deep-Learning-with-Limited-Numerical-Precision.pdf)
+
+In the machine learning field, it has been found that in highly random environments with many contributors, such as a neural network with its many contributing nodes, stochastic rounding vastly improves performance. This environment mirrors that of a Monte Carlo particle simulation, featuring its many contributing accumulators and high randomness, lending to stochastic rounding's application in VMC.
+
+[Github Issue #41](https://github.com/fangq/mcx/issues/41)
+
+In the field of VMC, specifically MCX (Monte Carlo eXtreme), the popular CUDA implementation, the issue of rounding error is documented and noted as an issue in large photon simulations, even with 32 bit precision floating point numbers. The listed fixes are to use double precision, however that's inefficient on GPUs, Kahan summation, storing a second float that tracks rounding error that can be added / adjusted for at the end, and repetitions, splitting the simulation into chunks. Notably, this lacks stochastic rounding, being a gap in production VMC programs due to a lack of hardware support.
+
+# Engineering Goals
+
+To design a VMC program that both uses very low power while performing at a production capable level through applying stochastic rounding in both the computational and caching systems, allowing low energy environments to run on-board VMC calculations.
+
+# Expected Outcomes
+
+
+
+# Materials
+
+Kria KV260 FPGA Development Board, desktop computer with access to AMD graphics card RX 6700 XT and the Nvidia graphics card 3060 TI.
+
+# Procedures / Methods
+
+1. Implement a software reference in Rust of the VMC algorithm, then compare against the pmcxcl Python MCX algorithm to check for any inaccuracies in tooling.
+2. Write custom fixed point and floating point types that features different rounding methods.
+3. Reimplement each core operation and the output volume with the new arbitrary precision types, measuring how far the precision can be lowered of each before accuracy degrades.
+4. Change arbitrary point types to use stochastic rounding instead of round to nearest and measure the change in final bit widths
+5. Implement a floating point reference in HLS of VMC, measuring its accuracy and performance
+6. Implement an optimized arbitrary point version in HLS of VMC that allows for diffrent rounding methods
+7. Measure performance of the two found bit widths for both round to nearest and stochastic rounding, using their respective bit widths.
+
+# Risk and Safety
+
+Board operates at low voltage with no chemicals or other hazards.
+
+# Data Analysis
+
+The data would be exported from the software simulation and validated against both HLS variants to ensure a correct implementation
+
+# Bibliography
