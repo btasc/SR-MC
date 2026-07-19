@@ -1,5 +1,10 @@
 # Logbook
 
+## 07-18-26, Fixed bugs, reformatted JSON scene configs, worked on ap_types, and started on research plan
+This week I spent time fixing the CPU implementation's bugs and prepared for running it on the cube60 benchmark. To have a standardized JSON file, I chose to use the `pmcxcl` function `mcx2json` with modified fields, which allows me to load a standard benchmark into JSON and remove the unnecessary data. Additionally, I worked on writing the beginnings of the ap_types module that will eventually be used for the Rust bit sweep. In the future, I plan to implement an ApFloat type along with my ApInt type, allowing for both types of data to be implemented, however the Ap types have been proving very buggy, meaning there is probably a better alternative for my use case which I will have to do research on.
+
+I plan to spend time in the next few days fully commiting to finishing my research plan, as I would like to get a polished version done very soon.
+
 ## 07-09-26, Compiled more sources, continued notes, and worked on CPU implementation
 This week I've worked on my list of goals from last week. Additionally, I worked on finding more citations for the different sections of my project, as I had only formally compiled a few sources. With those sources, I sorted each into categories of either FPGA, Monte Carlo, SR, and Bit Sweep, and I plan to review each section as I'm working on it. This week, I got a lot of work done for the draft f32 implementation and consequently finished reviewing the Monte Carlo section of sources and took short notes on each, which I plan to emulate for the other parts of my project.
 
@@ -10,12 +15,12 @@ Finally, I decided to make a [workbook.md](workbook.md) that is similar to the l
 ## 07-02-26, Started notes and CPU implementation
 This week, I've started work on the CPU implementation. I plan to go through and write a rough floating point version, then go back complete the bit width study. Along with that, I decided to reread the main sources and take notes to make sure I fully understand what is happening. I plan to do this along with implementation as to be able to apply what I'm learning as I use it. Currently, I've only finished the photon step size, however I plan to go through and review all the core processes in a similar way until I can piece together the entire algorithm in f32.
 
-Next, I have three main goals I want to work on. First, as mentioned, I want to finish the f32 reference. Second, I want to research each piece as I implement it as well, making sure I fully understand how all the parts are derived. Finally, I want to finish the [design.md](../design/current.md) doc, as currently it's still a rough draft with unfinished parts, specifically the specifications of the memory cache system in URAM on the FPGA while also being messy.
+Next, I have three main goals I want to work on. First, as mentioned, I want to finish the f32 reference. Second, I want to research each piece as I implement it as well, making sure I fully understand how all the parts are derived. Finally, I want to finish the [design.md](../design/prototype_unfinished.md) doc, as currently it's still a rough draft with unfinished parts, specifically the specifications of the memory cache system in URAM on the FPGA while also being messy.
 
 ## 06-24-26, Beginning research and design
 In the past week, I've worked on the first parts of design and research. So far I've reviewed the foundational papers on both MCX and Stochastic rounding. Currently, I'm still working on following the leads from the MCX paper to learn more about the field and its foundations, along with its core processes.
 
-Along with research, I've begun working on the hardware layout of an HLS implementation, where I've spent the majority of my time this week. I managed to connect the structure using streams that pass data around, different from a software lens of passing variables into functions and using returns values. Design is document in [design.md](../design/current.md).
+Along with research, I've begun working on the hardware layout of an HLS implementation, where I've spent the majority of my time this week. I managed to connect the structure using streams that pass data around, different from a software lens of passing variables into functions and using returns values. Design is document in [design.md](../design/prototype_unfinished.md).
 
 ## 06-17-26, Project start
 Today I went through and formalized this project into this repository and plan to begin real work on science fair in the coming days. Along with that, I've also finalized my decision to use MCX as the Monte Carlo baseline. It features a simple double voxel setup to where it reads its information from a voxel grid and writes it out to a voxel grid, letting the core physics be simple compared to more analytical geometry. It also gives me a good production baseline to compare against, rather than one of my own unoptimized GPU implementations. This allows me to properly compare perf per watt without bias.
