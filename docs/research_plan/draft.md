@@ -6,13 +6,9 @@ In Monte Carlo simulations, specifically voxelized Monte Carlo photon transport,
 
 # Research Question
 
-## Questions
-
 1. How far can stochastic rounding facilitate the lowering of bit widths until variance causes outputs to significantly decay?
 2. How does the lowering of bit widths effect the subsequent overall algorithmic performance?
 3. Does the change in performance allow for a low power FPGA device to viably compute VMC?
-
-## Synopsis of background
 
 [Deep Learning with Limited Numerical Precision](https://www.researchgate.net/profile/Ankur-Agrawal-18/publication/272195143_Deep_Learning_with_Limited_Numerical_Precision/links/551952760cf273292e7148bc/Deep-Learning-with-Limited-Numerical-Precision.pdf)
 
@@ -24,11 +20,11 @@ In the field of VMC, specifically MCX (Monte Carlo eXtreme), the popular CUDA im
 
 # Engineering Goals
 
-To design a VMC program that both uses very low power while performing at a production capable level through applying stochastic rounding in both the computational and caching systems, allowing low energy environments to run on-board VMC calculations.
+Design a VMC program that both uses very low power while performing at a production capable level through applying stochastic rounding in both the computational and caching systems, allowing low energy environments to run on-board VMC calculations.
 
 # Expected Outcomes
 
-
+A working implementation of a floating point, fixed point, and fixed point with stochastic rounding implementations written in HLS, with a significant percentage increase in performance of the fixed point over floating point, and a further percentage increase in performance of fixed point with stochastic rounding over regular fixed point.
 
 # Materials
 
@@ -41,7 +37,7 @@ Kria KV260 FPGA Development Board, desktop computer with access to AMD graphics 
 3. Reimplement each core operation and the output volume with the new arbitrary precision types, measuring how far the precision can be lowered of each before accuracy degrades.
 4. Change arbitrary point types to use stochastic rounding instead of round to nearest and measure the change in final bit widths
 5. Implement a floating point reference in HLS of VMC, measuring its accuracy and performance
-6. Implement an optimized arbitrary point version in HLS of VMC that allows for diffrent rounding methods
+6. Implement an optimized arbitrary point version in HLS of VMC that allows for different rounding methods
 7. Measure performance of the two found bit widths for both round to nearest and stochastic rounding, using their respective bit widths.
 
 # Risk and Safety
@@ -50,6 +46,6 @@ Board operates at low voltage with no chemicals or other hazards.
 
 # Data Analysis
 
-The data would be exported from the software simulation and validated against both HLS variants to ensure a correct implementation
+The data would be exported from the software simulation and validated against both HLS variants to ensure a correct implementation.
 
 # Bibliography

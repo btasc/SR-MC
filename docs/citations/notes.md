@@ -30,9 +30,7 @@ FullMonte CUDA
 
 ## Bit Sweep
 
-"Simulating low precision floating point arithmetic"
-
-"CPFloat", "StochascticRounding.jl"
+""
 
 # Notes
 
@@ -80,7 +78,14 @@ Surveys a huge amount of papers and projects on MC photon transport, detailing t
 
 [Github MCX, Issue #41](https://github.com/fangq/mcx/issues/41)
 
-Perfectly outlines the issue of 
+Outlines the issue of MCX slowly losing accuracy as small values are deposited to large totals, and lists potential solutions including Kahan summation and repeating the test iterations multiple times, importantly not listing stochastic rounding.
+
+## FPGA
+
+[Hardware acceleration of a Monte Carlo simulation
+for photodynamic treatment planning](https://www.spiedigitallibrary.org/journalArticle/Download?fullDOI=10.1117/1.3080134)
+
+
 
 ## Bit Sweep
 
@@ -94,3 +99,11 @@ Technical document of Xilinx DSP, specifically page 9/77 is used where it mentio
 [CPFloat](https://github.com/north-numerical-computing/cpfloat)
 
 Two potential repos that were reviewed for their use in the bit sweep before deciding to go with a custom implementation.
+
+[Simulating low precision floating point arithmetic](https://epubs.siam.org/doi/pdf/10.1137/19M1251308)
+
+Describes simulating low precision floating point numbers. Source that introduces the idea of rounding after every operation, which is what is done in the final bit sweep.
+
+## Use cases
+
+[A Semianalytic Monte Carlo Simulator for Spaceborne Oceanic Lidar: Framework and Preliminary Results](https://www.mdpi.com/2072-4292/12/17/2820)

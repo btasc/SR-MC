@@ -2,15 +2,15 @@
 
 ## 07-18-26, Continued research plan and researched use cases
 
-Today I worked on my research plan and began research on the use cases of a portable MCX algorithm. So far I have found spaceborne oceanic lidar as a promising lead, however I plan to finish research a bit tonight and tomorrow before implementing the findings into my research plan..
+Today I worked on my research plan and began research on the use cases of a portable MCX algorithm. So far I have found spaceborne oceanic lidar as a promising lead, however I plan to finish research a bit tonight and tomorrow before implementing the findings into my research plan.
 
 ## 07-16-26, Started research plan, found Github Issue #41, further DSP research
 
 Today I started on the research plan, compiling my specific sources and other references. I wasn't able to fully finish the research plan prototype, however I would like to take my time rather than rush through, as the research plan is very important to the project. 
 
-Additionally and very excitingly, I found [Github issue #41](https://github.com/fangq/mcx/issues/41) while doing some final research for the research plan which perfectly outlines the issue of rounding errors slowly building up, and the current industry fixes for it, which notably does not include stochastic rounding. This is exciting as it is a core piece that validates the issue of swamping, and was found decently casually as the first result of Googling "MCX rounding accumulation". Further notes are in [notes.md](../citations/core_notes.md).
+Additionally and very excitingly, I found [Github issue #41](https://github.com/fangq/mcx/issues/41) while doing some final research for the research plan which perfectly outlines the issue of rounding errors slowly building up, and the current industry fixes for it, which notably does not include stochastic rounding. This is exciting as it is a core piece that validates the issue of swamping, and was found decently casually as the first result of Googling "MCX rounding accumulation". Further notes are in [notes.md](../citations/notes.md).
 
-Finally, I looked over the research paper [DSP-Packing: Squeezing Low-precision Arithmetic into FPGA DSP Blocks](https://arxiv.org/abs/2203.11028) to learn more about DSP packing and found that I got some stuff wrong. For example, the DSP block actually features a pre adder on the 27 bit term along with a previous output term, meaning a single DSP cycle looks more like `(A + D) * B + C + prev` rather than just `A * B + C`. While I wasn't able to finish fully reviewing, a short skim let me note that their proposed format of "Overpacking" performed very well, and I'm interested in if it could be applicable to my application. Notes on paper are in [notes.md](../citations/core_notes.md).
+Finally, I looked over the research paper [DSP-Packing: Squeezing Low-precision Arithmetic into FPGA DSP Blocks](https://arxiv.org/abs/2203.11028) to learn more about DSP packing and found that I got some stuff wrong. For example, the DSP block actually features a pre adder on the 27 bit term along with a previous output term, meaning a single DSP cycle looks more like `(A + D) * B + C + prev` rather than just `A * B + C`. While I wasn't able to finish fully reviewing, a short skim let me note that their proposed format of "Overpacking" performed very well, and I'm interested in if it could be applicable to my application. Notes on paper are in [notes.md](../citations/notes.md).
 
 ## 07-15-26, LVSF forms, DSP optimizations, bit sweep reformatting
 
