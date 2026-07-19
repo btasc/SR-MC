@@ -45,7 +45,7 @@ Kria KV260 FPGA Development Board, desktop computer with access to AMD graphics 
 
 # Risk and Safety
 
-Board operates at low voltage with no chemicals or other hazards.
+FPGA board requires a power supply of 12V with a maximum of 3 A, presenting no direct harm. The board is capable of running hot, so care will be taken to avoid contact during compute. The board features a static bag to prevent static build up and damage, however additional care will be taken not to cause static damage. Additionally, no hazardous chemicals are used, and no human surveys of any kind will be conducted.
 
 # Data Analysis
 
