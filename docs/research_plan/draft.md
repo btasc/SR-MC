@@ -34,11 +34,14 @@ Kria KV260 FPGA Development Board, desktop computer with access to AMD graphics 
 
 1. Implement a software reference in Rust of the VMC algorithm, then compare against the pmcxcl Python MCX algorithm to check for any inaccuracies in tooling.
 2. Write custom fixed point and floating point types that features different rounding methods.
-3. Reimplement each core operation and the output volume with the new arbitrary precision types, measuring how far the precision can be lowered of each before accuracy degrades.
-4. Change arbitrary point types to use stochastic rounding instead of round to nearest and measure the change in final bit widths
-5. Implement a floating point reference in HLS of VMC, measuring its accuracy and performance
-6. Implement an optimized arbitrary point version in HLS of VMC that allows for different rounding methods
-7. Measure performance of the two found bit widths for both round to nearest and stochastic rounding, using their respective bit widths.
+3. Reimplement each core operation and the output volume with the new arbitrary precision types.
+4. Record total function accuracy over each individual bit width sweep, repeating with stochastic rounding included.
+5. Graph final function accuracy with all bit widths optimized for both versions.
+6. Implement a floating point reference in HLS of VMC.
+7. Implement an optimized arbitrary point version in HLS of VMC that allows for different rounding methods.
+8. Measure performance of all 3 sets of programs, the floating point, fixed point, and fixed point with stochastic rounding.
+9. Export all 3 datasets back as raw files on my desktop computer for analysis.
+10. Repeat steps #7 and #8 10 times, storing each 10 raw outputs and runtime information.
 
 # Risk and Safety
 
@@ -46,6 +49,6 @@ Board operates at low voltage with no chemicals or other hazards.
 
 # Data Analysis
 
-The data would be exported from the software simulation and validated against both HLS variants to ensure a correct implementation.
+Bit sweep data is exported as a raw file, graphing a set of total functional accuracy over each variable's bit sweep and the total combined bit optimized version. For each HLS run, graph power draw, photons per sec, photons per sec per watt, and finally the total accuracy of the run. Compare mean and median of each.
 
 # Bibliography
