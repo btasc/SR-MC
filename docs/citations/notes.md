@@ -85,7 +85,9 @@ Outlines the issue of MCX slowly losing accuracy as small values are deposited t
 [Hardware acceleration of a Monte Carlo simulation
 for photodynamic treatment planning](https://www.spiedigitallibrary.org/journalArticle/Download?fullDOI=10.1117/1.3080134)
 
+[Method to measure power draw on Kria KV260](https://adaptivesupport.amd.com/s/question/0D54U00008Jba6TSAR/best-method-to-measure-powerenergy-consumption?language=en_US)
 
+Forum post about how measuring power draw on the KV260. Response mentions using "INA260 ADDR: 0x40". Potentially a different board (KV260 could be a common model, with Kria being the differentiater)
 
 ## Bit Sweep
 

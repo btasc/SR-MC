@@ -28,7 +28,7 @@ A working implementation of a floating point, fixed point, and fixed point with 
 
 # Materials
 
-Kria KV260 FPGA Development Board, desktop computer with access to AMD graphics card RX 6700 XT and the Nvidia graphics card 3060 TI.
+Hardware includes a Kria KV260 FPGA Development Board, desktop computer with 32 GB of DDR4 RAM, an AMD Ryzen 5 2600 6 core processor CPU, and access to the AMD RX 6700 XT and NVIDIA RTX 3060 TI graphics cards. Software requirements include the Rust and Python languages, and a free AMD Vitis HLS license.
 
 # Procedures / Methods
 
