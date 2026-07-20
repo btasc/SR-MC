@@ -1,5 +1,11 @@
 # Workbook
 
+## 07-19-26, Finalizing research plan, starting bibliography tomorrow
+
+Today I worked on my research plan more, rewriting sections and trying to get it closer to a final version. I've written my core sections to a point where I think they are ready, besides my rationale section, however now I need to start on my bibliography formatting. From my understanding, ISEF allows any format of citations, and LVSF / DVSF default to ISEF, meaning I get to pick the format. From my research, IEEE format seems to be correct for my project, allowing me to write short in text citations in the form of [n], [n, m, o], and [n-z], which I enjoy for writing and have enjoyed in the research papers I've read. For now however, my in text citations are just in the form of links.
+
+I plan to finish the citations, do one final review of my research plan, and finish the forms all tomorrow, allowing me to review for one day before sending them to the director of LVSF. I am going on vacation in roughly 5 or 6 days, meaning this is when I would like to finish this more research and writing heavy portion of the project, allowing myself to work on much more enjoyable bit sweep code on my laptop during vacation.
+
 ## 07-18-26, Continued research plan and researched use cases
 
 Today I worked on my research plan and began research on the use cases of a portable MCX algorithm. So far I have found spaceborne oceanic lidar as a promising lead, however I plan to finish research a bit tonight and tomorrow before implementing the findings into my research plan.
