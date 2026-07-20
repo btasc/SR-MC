@@ -2,7 +2,7 @@
 
 # Rationale
 
-In voxelizied Monte Carlo photon transport simulations, ref
+In Monte Carlo simulations, specifically voxelized Monte Carlo photon transport, referred to as VMC from now on, programs simulate many photons as they travel through some geometry, scattering at random intervals. VMC simulations are used in many fields, such as medical tissue imaging via MCX (citation) and oceanic lidar deployed through satellites (citation), however all implementations 
 
 In Monte Carlo simulations, specifically voxelized Monte Carlo photon transport, referred to as VMC from now on, a simulation generally consists of many tiny adds to the global accumulator grid. As a result, VMC grids require their per grid storage type to have a very large bit width capable of storing many precise values. This puts a large strain on memory use, along with requiring large intermediary datatypes, causing performance difficulties. Stochastic rounding is a technique to fix specifically this issue through trading bias with variance, and can be applied in both the VMC grid accumulator along with the intermediary datatypes, allowing both to be implemented in a lower width datatype. This helps both computational performance and memory strain. In order to facilitate both high performance stochastic rounding and arbitrary width numbers, an FPGA is the hardware of choice. It features extreme customizability, allowing for tailored RNG and fine control over math.
 

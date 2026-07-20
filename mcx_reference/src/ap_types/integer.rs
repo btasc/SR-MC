@@ -12,7 +12,7 @@ pub struct ApInt {
 }
 
 impl ApInt {
-    const MAX_WIDTH: u32 = 63;
+    const MAX_WIDTH: u32 = 60;
 
     pub fn new(core: i64, width: u32) -> Self {
         debug_assert!(width <= Self::MAX_WIDTH);
@@ -39,8 +39,8 @@ impl ApInt {
     fn dbg_assert_max_width(&self) {
         debug_assert!(
             self.width <= Self::MAX_WIDTH,
-            "Width exceeded 63 bits of precision. Width: {}",
-            self.width,
+            "Width exceeded {} bits of precision. Width: {}",
+            Self::MAX_WIDTH, self.width,
         )
     }
 
@@ -63,6 +63,8 @@ impl Mul for ApInt {
     type Output = Self;
 
     fn mul(self, rhs: Self) -> Self::Output {
+        debug_assert!(self.width + rhs.width <= Self::MAX_WIDTH);
+        
         let ret = Self {
             width: self.width + rhs.width,
             core: self.core * rhs.core,
