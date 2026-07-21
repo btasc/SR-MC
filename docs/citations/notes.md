@@ -14,7 +14,7 @@ William Lo, MASc thesis
 
 "Accelerating 3d Monte Carlo Photonic Simulations on tighly coupled CPU FPGA systems"
 
-FullMonte CUDA
+A
 
 ## SR
 
@@ -79,6 +79,10 @@ Surveys a huge amount of papers and projects on MC photon transport, detailing t
 [Github MCX, Issue #41](https://github.com/fangq/mcx/issues/41)
 
 Outlines the issue of MCX slowly losing accuracy as small values are deposited to large totals, and lists potential solutions including Kahan summation and repeating the test iterations multiple times, importantly not listing stochastic rounding.
+
+[FullMonte](https://www.researchgate.net/profile/Lothar-Lilge/publication/258812265_FullMonte_a_framework_for_high-performance_Monte_Carlo_simulation_of_light_through_turbid_media_with_complex_geometry/links/55999cc008ae5d8f39363675/FullMonte-a-framework-for-high-performance-Monte-Carlo-simulation-of-light-through-turbid-media-with-complex-geometry.pdf)
+
+Method of computing VMC, however uses tetrahedral meshes to represent curved figures. Used in Rationale section of research plan, section 3.1 (page 3/14) says that they use 64 bit buffer for fluence accumulation
 
 ## FPGA
 
