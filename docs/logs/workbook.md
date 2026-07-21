@@ -1,5 +1,13 @@
 # Workbook
 
+## 07-20-26, Rewrote rationale, worked on bibliography, ideas for bit sweep
+
+Today I worked on rewriting the rationale. Originally I had thought that the Rationale was for the reasoning on why the technique would work, but it seems to more be the actual use of the technique. I've spent a lot of time working on it and editing it, however the current version is very long. I believe tomorrow I would like to edit it down, removing much of the unnecessary technical explanations and such, where I can then finally finish my forms and submit them.
+
+I attempted to work on the bibliography. I downloaded the citations manager Zotero, however have not spent much time using it, as I dedicated most of my time today on my Rationale and finding the relevant citations for it.
+
+Finally, I had some time to think about how I want to implement the bit sweep. I think the best way to do it would be to use some struct that gives a "pool" of ap nums to use. whenever a new bit sweep variable is made, a number can be fetched with something like `pool.get_ap::<ApInt>()` or something, then an operation can be done with something like `pool.mul::<ApInt>(n1, n2)` or `pool.lut::<ApInt>(lut, n1)`. To bit sweep, there can be a bitsweep method that passes in a `SweepPool` to the chosen function. It can be run in a no operation mode where it only adds a new value to the pool, then once all the "to-be-swept" values are added, it can run through and change each one's width. This seems like the best method. I also want to change my ApInt to have a max width of like 60, as right now there's some annoying signed semantics happening where I want to avoid using a max of 63. I also need to add a guard that avoids overflow, as right now I think the multiply check doesn't work on overflow.
+
 ## 07-19-26, Finalizing research plan, starting bibliography tomorrow
 
 Today I worked on my research plan more, rewriting sections and trying to get it closer to a final version. I've written my core sections to a point where I think they are ready, besides my rationale section, however now I need to start on my bibliography formatting. From my understanding, ISEF allows any format of citations, and LVSF / DVSF default to ISEF, meaning I get to pick the format. From my research, IEEE format seems to be correct for my project, allowing me to write short in text citations in the form of [n], [n, m, o], and [n-z], which I enjoy for writing and have enjoyed in the research papers I've read. For now however, my in text citations are just in the form of links.
