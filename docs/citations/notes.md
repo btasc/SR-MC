@@ -2,19 +2,11 @@
 
 ## FPGA
 
-"A nested MLMC framework for efficient simulations on FPGAs,"
-
-Lo et al., "Hardware acceleration of a Monte Carlo simulation for photodynamic therapy treatment planning," J. Biomed. Opt. 2009
-
-William Lo, MASc thesis
-
 "FPGA based monte carlo computation of light absoprtion for photodynamic cancer therapy"
 
 "A HLS case study on Light Propogation simulation in turbid media" IEEE
 
 "Accelerating 3d Monte Carlo Photonic Simulations on tighly coupled CPU FPGA systems"
-
-A
 
 ## SR
 
@@ -86,8 +78,19 @@ Method of computing VMC, however uses tetrahedral meshes to represent curved fig
 
 ## FPGA
 
-[Hardware acceleration of a Monte Carlo simulation
-for photodynamic treatment planning](https://www.spiedigitallibrary.org/journalArticle/Download?fullDOI=10.1117/1.3080134)
+### Lo & Luu MCML
+
+[Hardware acceleration of a Monte Carlo simulation for photodynamic treatment planning](https://www.spiedigitallibrary.org/journalArticle/Download?fullDOI=10.1117/1.3080134)
+[FPGA-based Monte Carlo Computation of Light Absorption for Photodynamic Cancer Therapy](https://www.eecg.utoronto.ca/~pc/research/publications/luu.fccm2009.pdf)
+
+### FullMonte
+
+### 2018 HLS Float version
+
+[A High-Level Synthesis Case Study on Light Propagation Simulation in Turbid Media](https://ieeexplore.ieee.org/abstract/document/8457665)
+[HLS-based FPGA Acceleration of Light Propagation Simulation in Turbid Media](https://dl.acm.org/doi/pdf/10.1145/3241793.3241804)
+
+### Misc
 
 [Method to measure power draw on Kria KV260](https://adaptivesupport.amd.com/s/question/0D54U00008Jba6TSAR/best-method-to-measure-powerenergy-consumption?language=en_US)
 
