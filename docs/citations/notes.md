@@ -85,10 +85,10 @@ Method of computing VMC, however uses tetrahedral meshes to represent curved fig
 
 ### FullMonte
 
-### 2018 HLS Float version
-
 [A High-Level Synthesis Case Study on Light Propagation Simulation in Turbid Media](https://ieeexplore.ieee.org/abstract/document/8457665)
 [HLS-based FPGA Acceleration of Light Propagation Simulation in Turbid Media](https://dl.acm.org/doi/pdf/10.1145/3241793.3241804)
+
+2018 floating point version of MCX, done in HLS using float values.
 
 ### Misc
 
@@ -113,6 +113,8 @@ Two potential repos that were reviewed for their use in the bit sweep before dec
 
 Describes simulating low precision floating point numbers. Source that introduces the idea of rounding after every operation, which is what is done in the final bit sweep.
 
-## Use cases
+## Misc
 
 [A Semianalytic Monte Carlo Simulator for Spaceborne Oceanic Lidar: Framework and Preliminary Results](https://www.mdpi.com/2072-4292/12/17/2820)
+
+Technique for simulating LIDAR from a satellite into the ocean. Consists of 3 modules, the first simulations MC with the Mie atmospheric equation, the second uses Snell's law once the ocean interface is reached, and the final uses the Petzoid equation once in the water. At each deposit step, the program solves an analytical equation to find the amount of light that would travel back to the satellite sensor.
