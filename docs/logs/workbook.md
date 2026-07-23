@@ -1,5 +1,15 @@
 # Workbook
 
+## 07-22-26, Finalizing Research Plan, filling out forms, DSP -ln optimization
+
+Today I fully spent a few hours and edited my research plan to be in a more final version. It had a lot of wording issues I wanted to change, such as referring to the compute and output both "compute and output" and "computational and cacheing" even though I was referring to the same systems, so I decided to go through and fix those errors.
+
+Next, I worked on trying to distill what I'm actually measuring with my error analysis. I've decided that I want to use variance and bias more as actual measurable terms, meaning I will have to update my procedure which I have been working on. I plan to change my f32 reference to an f64 reference, then run that for many runs at 10^9 photons to construct a golden reference. I could also just solve the analytical model, but I'm not sure exactly what goes into solving it and converting it to the output grid format. From there, I would run the GPU mcx-cl and compare against the reference.
+
+Additionally, I had a bit of time to make my - ln(eps) construction in the DSP48E2 format. I start with $ -ln(\varepsilon) $, which is equal to $ - (\ln(m) - k\ln(2)) = k\ln(2) - \ln(m)$. If I divide the $ \ln $ into two LUTS, one for slope (s) and one for y intercept (b) from the form $ y = mx + b $ with m substituted for s as m is already used, also defining $ m_t $ as m truncated to the size of the LUT and $ m_f $ as the fractional parts removed, you can get $ k\ln(2) - ( m_f * s_L(m_t) + b_L(m_t) ) $. Reformatting to fit with DSP48E2's pre adder, you can get $ (m_f + b'_L(m_t)) * - s_L(m_t) + k\ln(2)$ which perfectly fits in $ (A + B) * C + D $.
+
+This means that all I need to do for my research plan is a review on my procedure and adding in the sources not directly cited to by bibliography, and I should be done.
+
 ## 07-20-26, Rewrote rationale, worked on bibliography, ideas for bit sweep
 
 Today I worked on rewriting the rationale. Originally I had thought that the Rationale was for the reasoning on why the technique would work, but it seems to more be the actual use of the technique. I've spent a lot of time working on it and editing it, however the current version is very long. I believe tomorrow I would like to edit it down, removing much of the unnecessary technical explanations and such, where I can then finally finish my forms and submit them.
